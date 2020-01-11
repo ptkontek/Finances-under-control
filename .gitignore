@@ -1,0 +1,9 @@
+bin/
+
+obj/
+
+FinancesUnderControl.*
+
+Users.xml
+Incomes.xml
+Expenses.xml
