@@ -13,8 +13,8 @@ public:
     static string convertIntToString(int liczba);
     static int convertStringToInt(string liczba);
     static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-    static char wczytajZnak();
-    static string wczytajLinie();
+    static char loadSign();
+    static string loadTheLine();
     static string pobierzLiczbe(string tekst, int pozycjaZnaku);
     static int wczytajLiczbeCalkowita();
 };

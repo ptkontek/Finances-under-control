@@ -5,6 +5,8 @@
 #include <vector>
 #include "User.h"
 #include "UsersFile.h"
+#include "Markup.h"
+#include "HelpingMethods.h"
 
 using namespace std;
 
@@ -13,7 +15,7 @@ class UserManager {
     //int idZalogowanegoUzytkownika;
     int userIdAfterLoggedIn;
     vector <User> users;
-   // UsersFile usersFile; //kilka razy bedziemy korzystac z obiektu, wiec mozemy go tutaj utworzyc, zamiast w .cpp
+    //UsersFile usersFile; //kilka razy bedziemy korzystac z obiektu, wiec mozemy go tutaj utworzyc, zamiast w .cpp
 
 
     int getNewUserId();
@@ -23,16 +25,19 @@ class UserManager {
 public:
     UserManager() {
         userIdAfterLoggedIn = 0;
-       // users = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+        users = loadUsersFromFile();
     }
     void userRegistration();
     int userLogin();
     void showAllUsers();
-    //void zmianaHaslaZalogowanegoUzytkownika();
+    void changeUserPassword();
     void logOutTheUser();
     User writeDataOfTheNewUser();
     int getUserIdAfterLoggedIn();
     bool isTheUserLoggedIn();
+    vector <User> loadUsersFromFile();
+    void addUserToFile(User user);
+
 };
 
 #endif

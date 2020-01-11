@@ -5,9 +5,11 @@ void UserManager::userRegistration() {
     UsersFile usersFile;
 
     users.push_back(user);
-    usersFile.addUserToFile(user);
+    addUserToFile(user);
 
     cout << endl << "Account successfully created." << endl << endl;
+
+    showAllUsers();
     system("pause");
 }
 
@@ -70,15 +72,15 @@ int UserManager::userLogin() {
 
     cout << endl << "Enter login: ";
     cin >> login;
-    //login = HelpingMethods::wczytajLinie();
+    //login = HelpingMethods::loadTheLine();
     user.setLogin(login);
 
     for (int i = 0; i < users.size(); i++) {
 
         if (users[i].getLogin() == login) {
 
-            for (int i = 3; i > 0; i--) {
-                cout << "Enter password. Number of attempts: " << i << ": ";
+            for (int number = 3; number > 0; number--) {
+                cout << "Enter password. Number of attempts: " << number << ": ";
 
                 cin >> password;
                 user.setPassword(password);
@@ -114,4 +116,104 @@ bool UserManager::isTheUserLoggedIn() {
 
 int UserManager::getUserIdAfterLoggedIn() {
     return userIdAfterLoggedIn;
+}
+
+void UserManager::changeUserPassword() {
+    CMarkup xml;
+    User user;
+    string newPassword = "";
+    cout << "Enter new password: ";
+    newPassword = HelpingMethods::loadTheLine();
+    user.setPassword(newPassword);
+
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].getId() == userIdAfterLoggedIn) {
+            users[i].setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            system("pause");
+
+            bool fileExists = xml.Load( "users.xml" );
+
+            if (!fileExists) {
+                xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+            }
+            xml.ResetMainPos();;
+            xml.FindElem();
+            xml.IntoElem();
+
+            while ( xml.FindElem("User") ) {
+
+                xml.IntoElem();
+                xml.FindElem("Id");
+                if ( atoi( MCD_2PCSZ(xml.GetData())) == userIdAfterLoggedIn ) {
+                    xml.FindElem("Password");
+                    xml.RemoveElem();
+                    xml.AddElem("Password",newPassword);
+
+                }
+                xml.OutOfElem();
+                    xml.Save("users.xml");
+            }
+
+        }
+    }
+}
+
+vector <User> UserManager::loadUsersFromFile() {
+
+    CMarkup xml;
+    User user;
+    bool fileExists = xml.Load( "users.xml" );
+
+    if (!fileExists) {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+    }
+
+    xml.FindElem();
+    xml.IntoElem();
+
+    while ( xml.FindElem("User") ) {
+
+        xml.IntoElem();
+        xml.FindElem( "Id" );
+        user.setId( atoi( MCD_2PCSZ(xml.GetData())));
+
+        xml.FindElem( "Name" );
+        user.setName(xml.GetData());
+
+        xml.FindElem( "Surname" );
+        user.setSurname(xml.GetData());
+
+        xml.FindElem( "Login" );
+        user.setLogin(xml.GetData());
+
+        xml.FindElem( "Password" );
+        user.setPassword(xml.GetData());
+
+        users.push_back(user);
+
+        xml.OutOfElem();
+    }
+    return users;
+}
+void UserManager::addUserToFile(User user) {
+    CMarkup xml;
+
+    bool fileExists = xml.Load( "users.xml" );
+
+    if (!fileExists) {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xml.AddElem("Users");
+    }
+    xml.FindElem();
+    xml.IntoElem();
+    xml.AddElem("User");
+    xml.IntoElem();
+    xml.AddElem("Id", user.getId());
+    xml.AddElem("Name", user.getName());
+    xml.AddElem("Surname", user.getSurname());
+    xml.AddElem("Login", user.getLogin());
+    xml.AddElem("Password", user.getPassword());
+
+    xml.Save("users.xml");
 }

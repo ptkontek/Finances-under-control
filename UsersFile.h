@@ -11,12 +11,12 @@
 using namespace std;
 
 class UsersFile {
-    vector <User> users;
+    //vector <User> users;
 
 public:
     UsersFile() {};
-    vector <User> loadUsersFromFile();
-    void addUserToFile(User user);
+   // vector <User> loadUsersFromFile();
+    //void addUserToFile(User user);
 
 
 };

@@ -1,6 +1,6 @@
 #include "UsersFile.h"
 
-vector <User> UsersFile::loadUsersFromFile() {
+/*vector <User> UsersFile::loadUsersFromFile() {
 
     CMarkup xml;
     User user;
@@ -46,10 +46,7 @@ void UsersFile::addUserToFile(User user) {
     UserManager userManager;
     userManager.writeDataOfTheNewUser();
 
-
-
-
-    /*cout << "Enter id: " << endl;
+    cout << "Enter id: " << endl;
     cin >> id;
     cout << "Enter name: " << endl;
     cin >> name;
@@ -58,7 +55,7 @@ void UsersFile::addUserToFile(User user) {
     cout << "Enter login";
     cin >> login;
     cout << "Enter password";
-    cin >> password;*/
+    cin >> password;
 
     bool fileExists = xml.Load( "users.xml" );
 
@@ -78,4 +75,4 @@ void UsersFile::addUserToFile(User user) {
     xml.AddElem("Password", password);
 
     xml.Save("Users.xml");
-}
+}*/
