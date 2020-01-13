@@ -14,20 +14,20 @@ int HelpingMethods::convertStringToInt(string liczba) {
     return liczbaInt;
 }
 
-char HelpingMethods::wczytajZnak() {
-    string wejscie = "";
-    char znak  = {0};
+char HelpingMethods::loadSign() {
+    string start = "";
+    char sign  = {0};
 
     while (true) {
-        getline(cin, wejscie);
+        getline(cin, start);
 
-        if (wejscie.length() == 1) {
-            znak = wejscie[0];
+        if (start.length() == 1) {
+            sign = start[0];
             break;
         }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+        cout << "This is not a single sign. Enter again." << endl;
     }
-    return znak;
+    return sign;
 }
 
 string HelpingMethods::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst) {
@@ -38,10 +38,10 @@ string HelpingMethods::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst) 
     return tekst;
 }
 
-string HelpingMethods::wczytajLinie() {
-    string wejscie = "";
-    getline(cin, wejscie);
-    return wejscie;
+string HelpingMethods::loadTheLine() {
+    string start = "";
+    getline(cin, start);
+    return start;
 }
 
 string HelpingMethods::pobierzLiczbe(string tekst, int pozycjaZnaku) {

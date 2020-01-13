@@ -16,14 +16,14 @@ class IncomesFile {
     Income income;
 
 public:
-    IncomesFile() {};
+    /*IncomesFile() {};
     vector <Income> loadIncomesFromFile();
     void addIncomeToFile();
     void showIncomes();
     void sortIncomes();
    // bool sortDates(Income income.getDate(), Income income.getDate());
 
-    /*struct sortowanie {
+    struct sortowanie {
     inline bool operator() (const Income& i, const Income& j) {
         return (k.date < j.date);
     }

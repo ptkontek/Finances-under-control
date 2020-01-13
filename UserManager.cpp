@@ -29,21 +29,21 @@ User UserManager::writeDataOfTheNewUser() {
     user.setId(getNewUserId());
 
     cout << "Enter name: " ;
-    cin >> name;
+    name = HelpingMethods::loadTheLine();
     user.setName(name);
     cout << "Enter surname: ";
-    cin >> surname;
+    surname = HelpingMethods::loadTheLine();
     user.setSurname(surname);
 
     do {
         cout << "Enter login: ";
-        cin >> login;
+        login = HelpingMethods::loadTheLine();
         user.setLogin(login);
     } while (isLoginExsist(user.getLogin())== true);
 
 
     cout << "Enter password: ";
-    cin >> password;
+    password = HelpingMethods::loadTheLine();
     user.setPassword(password);
 
     return user;
@@ -65,14 +65,12 @@ bool UserManager::isLoginExsist(string login) {
     }
     return false;
 }
-
 int UserManager::userLogin() {
     User user;
     string login, password;
 
     cout << endl << "Enter login: ";
-    cin >> login;
-    //login = HelpingMethods::loadTheLine();
+    login = HelpingMethods::loadTheLine();
     user.setLogin(login);
 
     for (int i = 0; i < users.size(); i++) {
@@ -88,6 +86,7 @@ int UserManager::userLogin() {
                 if (users[i].getPassword() == password) {
                     userIdAfterLoggedIn = users[i].getId();
                     cout << endl << "You logged in." << endl << endl;
+                    cout << "User id after logged in" << userIdAfterLoggedIn << endl;
 
                     system("pause");
                     return userIdAfterLoggedIn;

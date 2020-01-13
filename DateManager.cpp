@@ -113,11 +113,11 @@ bool DateManager::checkIfTheDateIsCorrect() {
             if ((year % 4 == 0) && (year % 100 !=0) || (year % 400 == 0)) {
                 if ((day > 0) && (day <= 29))
                     return true;
-                else if ((day > 0) && (day <= 28))
-                    return true;
-                else if (day > 29)
-                    return false;
-            }
+            } else if ((day > 0) && (day <= 28))
+                return true;
+            else if (day > 29)
+                return false;
+
         } else if ((month == 1) || (month == 3) || (month == 5) || (month == 7) || (month == 8) || (month == 10) || (month == 12)) {
 
             if ((day > 0) && (day <= 31))

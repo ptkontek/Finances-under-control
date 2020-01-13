@@ -27,10 +27,10 @@ int main() {
     //dateManager.howManyDaysHasMonth();
 
     //UsersFile usersFile;
-   // usersFile.loadUsersFromFile();
-   // usersFile.addUserToFile(user);
+    // usersFile.loadUsersFromFile();
+    // usersFile.addUserToFile(user);
 
-   // userManager.showAllUsers();
+    // userManager.showAllUsers();
 
     char choice;
     //KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt","Adresaci.txt");
@@ -59,19 +59,19 @@ int main() {
 
             switch (choice) {
             case '1':
-                //personalBudget.addIncome();
+                personalBudget.addIncome();
                 break;
             case '2':
-               // personalBudget.addExpense();
+                // personalBudget.addExpense();
                 break;
             case '3':
-              //  personalBudget.wyszukajAdresatowPoNazwisku();
+                //  personalBudget.wyszukajAdresatowPoNazwisku();
                 break;
             case '4':
-              //  personalBudget.wyswietlWszystkichAdresatow();
+                //  personalBudget.wyswietlWszystkichAdresatow();
                 break;
             case '5':
-              //  personalBudget.usunAdresata();
+                //  personalBudget.usunAdresata();
                 break;
             case '6':
                 personalBudget.changeUserPassword();

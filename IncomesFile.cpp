@@ -1,6 +1,6 @@
 #include "IncomesFile.h"
 
-vector <Income> IncomesFile::loadIncomesFromFile() {
+/*vector <Income> IncomesFile::loadIncomesFromFile() {
 
     CMarkup xml;
     Income income;
@@ -101,7 +101,7 @@ void IncomesFile::showIncomes() {
 //}
 
 
-/*void IncomesFile::sortIncomes() {
+void IncomesFile::sortIncomes() {
     //Income income;
 
     sort(incomes.begin(), incomes.end(), [ ] (const auto& lhs, const auto& rhs) {

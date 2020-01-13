@@ -5,7 +5,10 @@ void PersonalBudget::userRegistration() {
 }
 
 void PersonalBudget::userLogin() {
-    userManager.userLogin(); // zmienic
+    userManager.userLogin();
+    if (userManager.isTheUserLoggedIn()) {
+    incomeManager = new IncomeManager(userManager.getUserIdAfterLoggedIn());
+    }
 }
 
 bool PersonalBudget::isTheUserLoggedIn() {
@@ -13,11 +16,20 @@ bool PersonalBudget::isTheUserLoggedIn() {
 }
 
 void PersonalBudget::logOutTheUser() {
-    userManager.logOutTheUser(); // zmienic
+    userManager.logOutTheUser();
+    delete incomeManager;
+    incomeManager = NULL;
 }
 
 void PersonalBudget::changeUserPassword() {
     userManager.changeUserPassword();
+}
+
+void PersonalBudget::addIncome() {
+    if (userManager.isTheUserLoggedIn()) {
+        incomeManager->addIncome();
+    }
+    incomeManager->addIncome();
 }
 
 char PersonalBudget::selectOptionFromTheMainMenu() {
