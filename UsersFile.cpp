@@ -1,6 +1,6 @@
 #include "UsersFile.h"
 
-/*vector <User> UsersFile::loadUsersFromFile() {
+vector <User> UsersFile::loadUsersFromFile() {
 
     CMarkup xml;
     User user;
@@ -40,22 +40,6 @@
 
 void UsersFile::addUserToFile(User user) {
     CMarkup xml;
-    int id;
-    //User user;
-    string name, surname, login, password;
-    UserManager userManager;
-    userManager.writeDataOfTheNewUser();
-
-    cout << "Enter id: " << endl;
-    cin >> id;
-    cout << "Enter name: " << endl;
-    cin >> name;
-    cout << "Enter surname" << endl;
-    cin >> surname;
-    cout << "Enter login";
-    cin >> login;
-    cout << "Enter password";
-    cin >> password;
 
     bool fileExists = xml.Load( "users.xml" );
 
@@ -63,16 +47,15 @@ void UsersFile::addUserToFile(User user) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
-
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("User");
     xml.IntoElem();
-    xml.AddElem("Id", id);
-    xml.AddElem("Name", name);
-    xml.AddElem("Surname", surname);
-    xml.AddElem("Login", login);
-    xml.AddElem("Password", password);
+    xml.AddElem("Id", user.getId());
+    xml.AddElem("Name", user.getName());
+    xml.AddElem("Surname", user.getSurname());
+    xml.AddElem("Login", user.getLogin());
+    xml.AddElem("Password", user.getPassword());
 
-    xml.Save("Users.xml");
-}*/
+    xml.Save("users.xml");
+}

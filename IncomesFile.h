@@ -4,24 +4,33 @@
 #include <iostream>
 #include <windows.h>
 #include <vector>
-#include <algorithm>
 #include "Income.h"
 #include "Markup.h"
 #include "DateManager.h"
+#include "HelpingMethods.h"
 
 using namespace std;
 
 class IncomesFile {
-    vector <Income> incomes;
+    int lastIncomeId;
     Income income;
+    DateManager dateManager;
+    //string date;
 
 public:
-    /*IncomesFile() {};
-    vector <Income> loadIncomesFromFile();
-    void addIncomeToFile();
+    IncomesFile() {
+    lastIncomeId = 0;
+    };
+
+
+    vector <Income> loadIncomesFromFile(int userIdAfterLoggedIn);
+    void addIncomeToFile(Income income);
     void showIncomes();
-    void sortIncomes();
-   // bool sortDates(Income income.getDate(), Income income.getDate());
+    int getLastIncomeId();
+
+
+    //void sortIncomes();
+   /*bool sortDates(Income income.getDate(), Income income.getDate());
 
     struct sortowanie {
     inline bool operator() (const Income& i, const Income& j) {

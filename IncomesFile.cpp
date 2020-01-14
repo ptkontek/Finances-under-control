@@ -1,12 +1,12 @@
 #include "IncomesFile.h"
 
-/*vector <Income> IncomesFile::loadIncomesFromFile() {
+vector <Income> IncomesFile::loadIncomesFromFile(int userIdAfterLoggedIn) {
 
     CMarkup xml;
     Income income;
-    DateManager dateManager;
-    string date;
+    vector <Income> incomes;
     int convertDate;
+    string date;
     bool fileExists = xml.Load( "incomes.xml" );
 
     if (!fileExists) {
@@ -19,50 +19,42 @@
     while ( xml.FindElem("Income") ) {
 
         xml.IntoElem();
-        xml.FindElem( "IncomeId" );
-        income.setIncomeId( atoi( MCD_2PCSZ(xml.GetData())));
-
         xml.FindElem( "UserId" );
-        income.setUserId( atoi( MCD_2PCSZ(xml.GetData())));
+        if (userIdAfterLoggedIn == (atoi( MCD_2PCSZ(xml.GetData())))) {
 
-        xml.FindElem( "Date" );
-        date = (xml.GetData());
-        convertDate = dateManager.convertDateToInt(date);
-        income.setDate(convertDate);
+            xml.ResetMainPos();
+            xml.FindElem( "IncomeId" );
+            income.setIncomeId( atoi( MCD_2PCSZ(xml.GetData())));
+            lastIncomeId = atoi( MCD_2PCSZ(xml.GetData()));
 
-        xml.FindElem( "Item" );
-        income.setItem(xml.GetData());
+            xml.FindElem( "UserId" );
+            income.setUserId(userIdAfterLoggedIn);
 
-        xml.FindElem( "Amount" );
-        income.setAmount( atoi( MCD_2PCSZ(xml.GetData())));
+            xml.FindElem( "Date" );
+            date = (xml.GetData());
+            convertDate = dateManager.convertDateToInt(date);
+            income.setDate(convertDate);
 
-        incomes.push_back(income);
+            xml.FindElem( "Item" );
+            income.setItem(xml.GetData());
 
-        xml.OutOfElem();
+            xml.FindElem( "Amount" );
+            income.setAmount( atoi( MCD_2PCSZ(xml.GetData())));
+
+            incomes.push_back(income);
+
+            xml.OutOfElem();
+        } else {
+            xml.FindElem( "IncomeId" );
+            lastIncomeId = atoi( MCD_2PCSZ(xml.GetData()));
+        }
     }
 
     return incomes;
 }
 
-void IncomesFile::addIncomeToFile() {
+void IncomesFile::addIncomeToFile(Income income) {
     CMarkup xml;
-    string date, item;
-    int incomeId, userId;
-    float amount;
-
-    DateManager dateManager;
-    //date = dateManager.getDateFromTheSystem();
-    date = dateManager.enterDate();
-
-    cout << "Podaj  Income ID " << endl;
-    cin >> incomeId;
-    cout << "Podaj User ID " << endl;
-    cin >> userId;
-    cout << "Enter Item" << endl;
-    cin >> item;
-    cout << "Enter Amount";
-    cin >> amount;
-
     bool fileExists = xml.Load( "incomes.xml" );
 
     if (!fileExists) {
@@ -70,32 +62,26 @@ void IncomesFile::addIncomeToFile() {
         xml.AddElem("Incomes");
     }
 
+
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("Income");
     xml.IntoElem();
-    xml.AddElem("IncomeId", incomeId);
-    xml.AddElem("UserId", userId);
-    xml.AddElem("Date", date);
-    xml.AddElem("Item", item);
-    xml.AddElem("Amount", amount);
+    xml.AddElem("IncomeId", getLastIncomeId()+1);
+    xml.AddElem("UserId", income.getUserId());
+    xml.AddElem("Date", dateManager.getDate());
+    xml.AddElem("Item", income.getItem());
+    xml.AddElem("Amount", income.getAmount());
 
     xml.Save("Incomes.xml");
+    lastIncomeId++;
 }
 
-void IncomesFile::showIncomes() {
-
-    for (int i = 0; i < incomes.size(); i++) {
-        cout <<incomes[i].getIncomeId() << endl;
-        cout <<incomes[i].getUserId() << endl;
-        cout <<incomes[i].getDate() << endl;
-        cout <<incomes[i].getItem() << endl;
-        cout <<incomes[i].getAmount() << endl;
-
-    }
+int IncomesFile::getLastIncomeId() {
+        return lastIncomeId;
 }
 
-//bool IncomesFile:: sortDates(Income income.getDate(), Income income.getDate()) {
+/*bool IncomesFile:: sortDates(Income income.getDate(), Income income.getDate()) {
 
   //  return ( income.getDate() < income.getDate() );
 //}

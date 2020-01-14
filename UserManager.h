@@ -12,31 +12,28 @@ using namespace std;
 
 class UserManager {
 
-    //int idZalogowanegoUzytkownika;
     int userIdAfterLoggedIn;
     vector <User> users;
-    //UsersFile usersFile; //kilka razy bedziemy korzystac z obiektu, wiec mozemy go tutaj utworzyc, zamiast w .cpp
-
+    UsersFile usersFile;
 
     int getNewUserId();
     bool isLoginExsist(string login);
+    User writeDataOfTheNewUser();
 
 
 public:
     UserManager() {
         userIdAfterLoggedIn = 0;
-        users = loadUsersFromFile();
+        users = usersFile.loadUsersFromFile();
     }
     void userRegistration();
     int userLogin();
     void showAllUsers();
     void changeUserPassword();
     void logOutTheUser();
-    User writeDataOfTheNewUser();
+
     int getUserIdAfterLoggedIn();
     bool isTheUserLoggedIn();
-    vector <User> loadUsersFromFile();
-    void addUserToFile(User user);
 
 };
 

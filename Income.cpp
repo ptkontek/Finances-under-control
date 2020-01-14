@@ -19,6 +19,7 @@ void Income::setItem(string newItem) {
 }
 
 void Income::setAmount(float newAmount) {
+    if (newAmount>0)
     amount = newAmount;
 }
 

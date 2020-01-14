@@ -45,7 +45,6 @@ string DateManager::getDateFromTheSystem() {
 
     if (DateManager::checkIfTheDateIsCorrect() == true)
         cout << "Date is correct" << endl;
-
     return date;
 }
 
@@ -66,6 +65,28 @@ string DateManager::enterDate() {
             cin >> date;
         }
     } while (DateManager::checkIfTheDateIsCorrect() == false);
+    return date;
+}
+
+string DateManager::getDate() {
+    return date;
+}
+
+string DateManager::selectDateEntry() {
+    char sign;
+    cout << "If you want do add today's income - enter 1, if not - enter 2 to set the date:";
+
+    do {
+        sign = getch();
+        if ( (sign != '1') && (sign !='2') )
+            cout << "Enter 1 or 2" << endl;
+    } while ( (sign != '1') && (sign !='2') );
+
+
+    if (sign == '1')
+        date = getDateFromTheSystem();
+    else if (sign == '2')
+        date = enterDate();
 
     return date;
 }

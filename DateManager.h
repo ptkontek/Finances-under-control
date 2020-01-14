@@ -7,6 +7,8 @@
 #include <string>
 #include "HelpingMethods.h"
 #include <ctime>
+#include <conio.h>
+
 using namespace std;
 
 class DateManager {
@@ -16,12 +18,15 @@ class DateManager {
 
 
 public:
-    DateManager() {};
+    DateManager() {
+    };
     int howManyDaysHasMonth();
     string getDateFromTheSystem();
     string enterDate();
-
+    string getDate();
     int convertDateToInt(string dateString);
+    string selectDateEntry();
+
 
 };
 
