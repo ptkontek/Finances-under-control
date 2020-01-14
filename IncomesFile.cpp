@@ -45,8 +45,10 @@ vector <Income> IncomesFile::loadIncomesFromFile(int userIdAfterLoggedIn) {
 
             xml.OutOfElem();
         } else {
+            xml.ResetMainPos();
             xml.FindElem( "IncomeId" );
             lastIncomeId = atoi( MCD_2PCSZ(xml.GetData()));
+            xml.OutOfElem();
         }
     }
 

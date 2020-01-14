@@ -33,7 +33,7 @@ int main() {
     // userManager.showAllUsers();
 
     char choice;
-    //KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt","Adresaci.txt");
+
 
     while (true) {
         if (personalBudget.isTheUserLoggedIn() == false) {
@@ -62,16 +62,16 @@ int main() {
                 personalBudget.addIncome();
                 break;
             case '2':
-                // personalBudget.addExpense();
+                personalBudget.addExpense();
                 break;
             case '3':
-                //  personalBudget.wyszukajAdresatowPoNazwisku();
+                // ;
                 break;
             case '4':
-                //  personalBudget.wyswietlWszystkichAdresatow();
+                // ;
                 break;
             case '5':
-                //  personalBudget.usunAdresata();
+               // ;
                 break;
             case '6':
                 personalBudget.changeUserPassword();

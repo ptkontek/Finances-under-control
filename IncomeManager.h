@@ -15,7 +15,6 @@ using namespace std;
 class IncomeManager {
 
     const int USER_ID;
-    int lastIncomeId;
     vector <Income> incomes;
     IncomesFile incomesFile;
 

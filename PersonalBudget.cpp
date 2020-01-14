@@ -8,6 +8,7 @@ void PersonalBudget::userLogin() {
     userManager.userLogin();
     if (userManager.isTheUserLoggedIn()) {
     incomeManager = new IncomeManager(userManager.getUserIdAfterLoggedIn());
+    expenseManager = new ExpenseManager(userManager.getUserIdAfterLoggedIn());
     }
 }
 
@@ -19,6 +20,8 @@ void PersonalBudget::logOutTheUser() {
     userManager.logOutTheUser();
     delete incomeManager;
     incomeManager = NULL;
+    delete expenseManager;
+    expenseManager = NULL;
 }
 
 void PersonalBudget::changeUserPassword() {
@@ -30,6 +33,13 @@ void PersonalBudget::addIncome() {
         incomeManager->addIncome();
     }
     incomeManager->addIncome();
+}
+
+void PersonalBudget::addExpense(){
+    if (userManager.isTheUserLoggedIn()) {
+        expenseManager->addExpense();
+    }
+    expenseManager->addExpense();
 }
 
 char PersonalBudget::selectOptionFromTheMainMenu() {

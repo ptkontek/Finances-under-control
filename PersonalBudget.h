@@ -8,6 +8,7 @@
 #include "UserManager.h"
 #include "HelpingMethods.h"
 #include "IncomeManager.h"
+#include "ExpenseManager.h"
 
 using namespace std;
 
@@ -15,16 +16,21 @@ class PersonalBudget {
 
     UserManager userManager;
     IncomeManager *incomeManager;
+    ExpenseManager *expenseManager;
 
 
 public:
     PersonalBudget() { //stworzyc stale nazwy plikow
         incomeManager = NULL;
+        expenseManager = NULL;
     };
     ~PersonalBudget() {
         delete incomeManager;
         incomeManager = NULL;
+        delete expenseManager;
+        expenseManager = NULL;
     }
+
     void userRegistration();
     void userLogin();
     void showAllUsers();
@@ -32,6 +38,7 @@ public:
     void logOutTheUser();
     bool isTheUserLoggedIn();
     void addIncome();
+    void addExpense();
 
     char selectOptionFromTheUserMenu();
     char selectOptionFromTheMainMenu();
