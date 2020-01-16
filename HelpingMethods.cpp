@@ -14,6 +14,18 @@ int HelpingMethods::convertStringToInt(string liczba) {
     return liczbaInt;
 }
 
+string HelpingMethods::addDashToDate(string date) {
+    string month, day, year, dateWithDash;
+
+    year = date.substr(0,4);
+    month = (date.substr(4,2));
+    day = (date.substr(6,2));
+
+    dateWithDash = (year +"-"+ month +"-"+ day);
+
+    return  dateWithDash;
+}
+
 char HelpingMethods::loadSign() {
     string start = "";
     char sign  = {0};
@@ -53,13 +65,11 @@ string HelpingMethods::pobierzLiczbe(string tekst, int pozycjaZnaku) {
     return liczba;
 }
 
-int HelpingMethods::wczytajLiczbeCalkowita()
-{
+int HelpingMethods::wczytajLiczbeCalkowita() {
     string wejscie = "";
     int liczba = 0;
 
-    while (true)
-    {
+    while (true) {
         getline(cin, wejscie);
 
         stringstream myStream(wejscie);

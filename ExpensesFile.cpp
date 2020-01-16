@@ -57,6 +57,14 @@ vector <Expense> ExpensesFile::loadExpensesFromFile(int userIdAfterLoggedIn) {
 
 void ExpensesFile::addExpenseToFile(Expense expense) {
     CMarkup xml;
+
+    string dateWithoutDash, dateWithDash;
+
+    dateWithoutDash = HelpingMethods::convertIntToString(expense.getDate());
+    cout << "date without dash" << dateWithoutDash << endl;
+    dateWithDash = HelpingMethods::addDashToDate(dateWithoutDash);
+    cout << "date with dash" << dateWithDash << endl;
+
     bool fileExists = xml.Load( "Expenses.xml" );
 
     if (!fileExists) {
@@ -71,7 +79,7 @@ void ExpensesFile::addExpenseToFile(Expense expense) {
     xml.IntoElem();
     xml.AddElem("ExpenseId", getLastExpenseId()+1);
     xml.AddElem("UserId", expense.getUserId());
-    xml.AddElem("Date", dateManager.getDate());
+    xml.AddElem("Date", dateWithDash);
     xml.AddElem("Item", expense.getItem());
     xml.AddElem("Amount", expense.getAmount());
 

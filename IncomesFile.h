@@ -15,7 +15,6 @@ class IncomesFile {
     int lastIncomeId;
     Income income;
     DateManager dateManager;
-    //string date;
 
 public:
     IncomesFile() {

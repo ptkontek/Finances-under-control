@@ -17,6 +17,7 @@ public:
     static string loadTheLine();
     static string pobierzLiczbe(string tekst, int pozycjaZnaku);
     static int wczytajLiczbeCalkowita();
+    static string addDashToDate(string date);
 };
 
 

@@ -56,7 +56,7 @@ string DateManager::enterDate() {
     do {
         year = HelpingMethods::convertStringToInt(date.substr(0,4));
         month = HelpingMethods::convertStringToInt(date.substr(5,2));
-        day = HelpingMethods::convertStringToInt(date.substr(8,4));
+        day = HelpingMethods::convertStringToInt(date.substr(8,2));
 
         if (DateManager::checkIfTheDateIsCorrect() == true)
             cout << "Date is correct" << endl;

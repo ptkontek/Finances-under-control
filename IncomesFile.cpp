@@ -57,6 +57,13 @@ vector <Income> IncomesFile::loadIncomesFromFile(int userIdAfterLoggedIn) {
 
 void IncomesFile::addIncomeToFile(Income income) {
     CMarkup xml;
+    string dateWithoutDash, dateWithDash;
+
+    dateWithoutDash = HelpingMethods::convertIntToString(income.getDate());
+    cout << "date without dash" << dateWithoutDash << endl;
+    dateWithDash = HelpingMethods::addDashToDate(dateWithoutDash);
+    cout << "date with dash" << dateWithDash << endl;
+
     bool fileExists = xml.Load( "incomes.xml" );
 
     if (!fileExists) {
@@ -64,14 +71,13 @@ void IncomesFile::addIncomeToFile(Income income) {
         xml.AddElem("Incomes");
     }
 
-
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("Income");
     xml.IntoElem();
     xml.AddElem("IncomeId", getLastIncomeId()+1);
     xml.AddElem("UserId", income.getUserId());
-    xml.AddElem("Date", dateManager.getDate());
+    xml.AddElem("Date", dateWithDash);
     xml.AddElem("Item", income.getItem());
     xml.AddElem("Amount", income.getAmount());
 
@@ -80,7 +86,7 @@ void IncomesFile::addIncomeToFile(Income income) {
 }
 
 int IncomesFile::getLastIncomeId() {
-        return lastIncomeId;
+    return lastIncomeId;
 }
 
 /*bool IncomesFile:: sortDates(Income income.getDate(), Income income.getDate()) {
