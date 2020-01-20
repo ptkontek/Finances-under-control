@@ -39,6 +39,8 @@ public:
     bool isTheUserLoggedIn();
     void addIncome();
     void addExpense();
+    void sortIncomes();
+    void calculateIncomesFromTheCurrentMonth();
 
     char selectOptionFromTheUserMenu();
     char selectOptionFromTheMainMenu();

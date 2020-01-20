@@ -42,8 +42,6 @@ Income IncomeManager::writeDataOfTheNewIncome() {
     return income;
 }
 
-
-
 void IncomeManager::showIncomes() {
 
     for (int i = 0; i < incomes.size(); i++) {
@@ -52,5 +50,22 @@ void IncomeManager::showIncomes() {
         cout <<incomes[i].getDate() << endl;
         cout <<incomes[i].getItem() << endl;
         cout <<incomes[i].getAmount() << endl;
+    }
+    system("pause");
+}
+
+void IncomeManager::sortIncomes() {
+    sort(incomes.begin(), incomes.end(), sortByDate());
+}
+
+void IncomeManager::calculateIncomesFromTheCurrentMonth() {
+    DateManager dateManager;
+    int dateOfBeginningOfTheCurrentMonth = dateManager.dateOfBeginningOfTheCurrentMonth();
+    int dateEndingTheCurrentMonth = dateManager.dateEndingTheCurrentMonth();
+    sortIncomes();
+    cout << "Finances from the current month: " << endl <<endl;
+    for (int i = 0; i < incomes.size(); i++) {
+        if ((incomes[i].getDate() >= dateOfBeginningOfTheCurrentMonth) && (incomes[i].getDate() <=dateEndingTheCurrentMonth))
+            cout << "Income: " << incomes[i].getAmount() << "  Amount: "<< incomes[i].getItem() << endl;
     }
 }

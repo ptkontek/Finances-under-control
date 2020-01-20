@@ -7,8 +7,8 @@ void PersonalBudget::userRegistration() {
 void PersonalBudget::userLogin() {
     userManager.userLogin();
     if (userManager.isTheUserLoggedIn()) {
-    incomeManager = new IncomeManager(userManager.getUserIdAfterLoggedIn());
-    expenseManager = new ExpenseManager(userManager.getUserIdAfterLoggedIn());
+        incomeManager = new IncomeManager(userManager.getUserIdAfterLoggedIn());
+        expenseManager = new ExpenseManager(userManager.getUserIdAfterLoggedIn());
     }
 }
 
@@ -35,12 +35,21 @@ void PersonalBudget::addIncome() {
     incomeManager->addIncome();
 }
 
-void PersonalBudget::addExpense(){
+void PersonalBudget::addExpense() {
     if (userManager.isTheUserLoggedIn()) {
         expenseManager->addExpense();
     }
     expenseManager->addExpense();
 }
+
+void PersonalBudget::sortIncomes() {
+    incomeManager->sortIncomes();
+}
+void PersonalBudget::calculateIncomesFromTheCurrentMonth() {
+    incomeManager->calculateIncomesFromTheCurrentMonth();
+    expenseManager->calculateExpensesFromTheCurrentMonth();
+}
+
 
 char PersonalBudget::selectOptionFromTheMainMenu() {
     char choice;

@@ -12,6 +12,8 @@
 using namespace std;
 
 class DateManager {
+
+
     int day, month, year, convertDate;
     string date;
     bool checkIfTheDateIsCorrect();
@@ -26,7 +28,10 @@ public:
     string getDate();
     int convertDateToInt(string dateString);
     string selectDateEntry();
-
+    int getMonthFromTheSystem();
+    int getYearFromTheSystem();
+    int dateOfBeginningOfTheCurrentMonth();
+    int dateEndingTheCurrentMonth();
 
 };
 

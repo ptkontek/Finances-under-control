@@ -65,7 +65,7 @@ int main() {
                 personalBudget.addExpense();
                 break;
             case '3':
-                // ;
+                personalBudget.calculateIncomesFromTheCurrentMonth() ;
                 break;
             case '4':
                 // ;
