@@ -56,15 +56,19 @@ void ExpenseManager::sortExpenses() {
     sort(expenses.begin(), expenses.end(), sortByDate());
 }
 
-void ExpenseManager::calculateExpensesFromTheCurrentMonth() {
+int ExpenseManager::calculateExpensesFromTheCurrentMonth() {
     DateManager dateManager;
+    int sumOfExpenses = 0;
     int dateOfBeginningOfTheCurrentMonth = dateManager.dateOfBeginningOfTheCurrentMonth();
     int dateEndingTheCurrentMonth = dateManager.dateEndingTheCurrentMonth();
     sortExpenses();
     cout << endl;
     for (int i = 0; i < expenses.size(); i++) {
-        if ((expenses[i].getDate() >= dateOfBeginningOfTheCurrentMonth) && (expenses[i].getDate() <=dateEndingTheCurrentMonth))
+        if ((expenses[i].getDate() >= dateOfBeginningOfTheCurrentMonth) && (expenses[i].getDate() <=dateEndingTheCurrentMonth)){
             cout << "Expense: " << expenses[i].getAmount() << "  Amount: "<< expenses[i].getItem() << endl;
+   sumOfExpenses = sumOfExpenses + expenses[i].getAmount();
     }
-    system("pause");
+    }
+    cout << "Sum of expenses from the current month: " << sumOfExpenses << endl << endl;
+    return sumOfExpenses;
 }

@@ -36,7 +36,7 @@ public:
     };
     void addIncome();
     void sortIncomes();
-    void calculateIncomesFromTheCurrentMonth();
+    int calculateIncomesFromTheCurrentMonth();
     void calculateIncomesFromThePreviousMonth();
     void calculateIncomesFromTheTimeInterval();
 };
