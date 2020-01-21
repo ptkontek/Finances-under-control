@@ -46,11 +46,13 @@ void PersonalBudget::sortIncomes() {
     incomeManager->sortIncomes();
 }
 
-void PersonalBudget::calculateIncomesFromTheCurrentMonth() {
+void PersonalBudget::calculateFinancesFromTheCurrentMonth() {
     int sumOfIncomes, sumOfExpenses, sumDiferrence;
+
     sumOfIncomes = incomeManager->calculateIncomesFromTheCurrentMonth();
     sumOfExpenses = expenseManager->calculateExpensesFromTheCurrentMonth();
     sumDiferrence = sumOfIncomes - sumOfExpenses;
+
     if (sumDiferrence > 0 )
         cout << "Your savings from the current month: " << sumDiferrence << endl;
     else if (sumDiferrence < 0)
@@ -60,6 +62,21 @@ void PersonalBudget::calculateIncomesFromTheCurrentMonth() {
     system("pause");
 }
 
+void PersonalBudget::calculateFinancesFromThePreviousMonth() {
+    int sumOfIncomes, sumOfExpenses, sumDiferrence;
+
+    sumOfIncomes = incomeManager->calculateIncomesFromThePreviousMonth();
+    sumOfExpenses = expenseManager->calculateExpensesFromThePreviousMonth();
+    sumDiferrence = sumOfIncomes - sumOfExpenses;
+
+    if (sumDiferrence > 0 )
+        cout << "Your savings from the previous month: " << sumDiferrence << endl;
+    else if (sumDiferrence < 0)
+        cout << "Your debt from the previous month: " << -sumDiferrence << endl;
+    else if (sumDiferrence == 0)
+        cout << "You have no savings or debt." << endl;
+    system("pause");
+}
 
 char PersonalBudget::selectOptionFromTheMainMenu() {
     char choice;

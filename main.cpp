@@ -65,10 +65,10 @@ int main() {
                 personalBudget.addExpense();
                 break;
             case '3':
-                personalBudget.calculateIncomesFromTheCurrentMonth() ;
+                personalBudget.calculateFinancesFromTheCurrentMonth() ;
                 break;
             case '4':
-                // ;
+                personalBudget.calculateFinancesFromThePreviousMonth() ;
                 break;
             case '5':
                // ;

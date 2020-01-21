@@ -32,6 +32,8 @@ public:
     int getYearFromTheSystem();
     int dateOfBeginningOfTheCurrentMonth();
     int dateEndingTheCurrentMonth();
+    int dateOfBeginningOfThePreviousMonth();
+    int dateEndingThePreviousMonth();
 
 };
 

@@ -64,11 +64,28 @@ int ExpenseManager::calculateExpensesFromTheCurrentMonth() {
     sortExpenses();
     cout << endl;
     for (int i = 0; i < expenses.size(); i++) {
-        if ((expenses[i].getDate() >= dateOfBeginningOfTheCurrentMonth) && (expenses[i].getDate() <=dateEndingTheCurrentMonth)){
+        if ((expenses[i].getDate() >= dateOfBeginningOfTheCurrentMonth) && (expenses[i].getDate() <=dateEndingTheCurrentMonth)) {
             cout << "Expense: " << expenses[i].getAmount() << "  Amount: "<< expenses[i].getItem() << endl;
-   sumOfExpenses = sumOfExpenses + expenses[i].getAmount();
-    }
+            sumOfExpenses = sumOfExpenses + expenses[i].getAmount();
+        }
     }
     cout << "Sum of expenses from the current month: " << sumOfExpenses << endl << endl;
+    return sumOfExpenses;
+}
+
+int ExpenseManager::calculateExpensesFromThePreviousMonth() {
+    DateManager dateManager;
+    int sumOfExpenses = 0;
+    int dateOfBeginningOfThePreviousMonth = dateManager.dateOfBeginningOfThePreviousMonth();
+    int dateEndingThePreviousMonth = dateManager.dateEndingThePreviousMonth();
+    sortExpenses();
+    cout << endl;
+    for (int i = 0; i < expenses.size(); i++) {
+        if ((expenses[i].getDate() >= dateOfBeginningOfThePreviousMonth) && (expenses[i].getDate() <= dateEndingThePreviousMonth)) {
+            cout << "Expense: " << expenses[i].getAmount() << "  Amount: " << expenses[i].getItem() << endl;
+            sumOfExpenses = sumOfExpenses + expenses[i].getAmount();
+        }
+    }
+    cout << "Sum of expenses from the previous month: " << sumOfExpenses << endl << endl;
     return sumOfExpenses;
 }

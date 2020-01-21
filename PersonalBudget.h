@@ -40,7 +40,8 @@ public:
     void addIncome();
     void addExpense();
     void sortIncomes();
-    void calculateIncomesFromTheCurrentMonth();
+    void calculateFinancesFromTheCurrentMonth();
+    void calculateFinancesFromThePreviousMonth();
 
     char selectOptionFromTheUserMenu();
     char selectOptionFromTheMainMenu();
