@@ -10,8 +10,6 @@ void IncomeManager::addIncome() {
     incomes.push_back(income);
     incomesFile.addIncomeToFile(income);
     cout << endl << "New income added." << endl;
-
-    showIncomes();
     system("pause");
 }
 
@@ -30,6 +28,7 @@ Income IncomeManager::writeDataOfTheNewIncome() {
     convertDate = dateManager.convertDateToInt(date);
     income.setDate(convertDate);
 
+    cout << endl << "-------------------------------" << endl;
     cout << "Enter item: ";
     //item = HelpingMethods::loadTheLine();
     cin >> item;
@@ -42,8 +41,6 @@ Income IncomeManager::writeDataOfTheNewIncome() {
     return income;
 }
 
-
-
 void IncomeManager::showIncomes() {
 
     for (int i = 0; i < incomes.size(); i++) {
@@ -53,4 +50,66 @@ void IncomeManager::showIncomes() {
         cout <<incomes[i].getItem() << endl;
         cout <<incomes[i].getAmount() << endl;
     }
+    system("pause");
+}
+
+void IncomeManager::sortIncomes() {
+    sort(incomes.begin(), incomes.end(), sortByDate());
+}
+
+int IncomeManager::calculateIncomesFromThePreviousMonth() {
+    DateManager dateManager;
+    int sumOfIncomes = 0;
+    int dateOfBeginningOfThePreviousMonth = dateManager.dateOfBeginningOfThePreviousMonth();
+    int dateEndingThePreviousMonth = dateManager.dateEndingThePreviousMonth();
+    sortIncomes();
+    cout << endl << "-------------------------------------------" << endl;
+    cout << "Finances from the previous month: " << endl <<endl;
+    for (int i = 0; i < incomes.size(); i++) {
+        if ((incomes[i].getDate() >= dateOfBeginningOfThePreviousMonth) && (incomes[i].getDate() <=dateEndingThePreviousMonth)) {
+            cout << "Income: " << incomes[i].getAmount() << "  Amount: "<< incomes[i].getItem() << endl;
+            sumOfIncomes = sumOfIncomes + incomes[i].getAmount();
+        }
+    }
+    cout << endl << "Sum of incomes from the previous month: " << sumOfIncomes << endl;
+    cout << "-------------------------------------------" << endl;
+    return sumOfIncomes;
+}
+
+int IncomeManager::calculateIncomesFromTheCurrentMonth() {
+    DateManager dateManager;
+    int sumOfIncomes = 0;
+    int dateOfBeginningOfTheCurrentMonth = dateManager.dateOfBeginningOfTheCurrentMonth();
+    int dateEndingTheCurrentMonth = dateManager.dateEndingTheCurrentMonth();
+
+    sortIncomes();
+    cout << endl << "-------------------------------------------" << endl;
+    cout << "Finances from the current month: " << endl <<endl;
+    for (int i = 0; i < incomes.size(); i++) {
+        if ((incomes[i].getDate() >= dateOfBeginningOfTheCurrentMonth) && (incomes[i].getDate() <= dateEndingTheCurrentMonth)) {
+            cout << "Income: " << incomes[i].getAmount() << "  Amount: "<< incomes[i].getItem() << endl;
+            sumOfIncomes = sumOfIncomes + incomes[i].getAmount();
+        }
+    }
+    cout << endl << "Sum of incomes from the current month: " << sumOfIncomes << endl;
+    cout << "-------------------------------------------" << endl;
+    return sumOfIncomes;
+}
+
+int IncomeManager::calculateIncomesFromTheTimeInterval(int startDate, int endDate) {
+    DateManager dateManager;
+    int sumOfIncomes = 0;
+
+    sortIncomes();
+    cout << endl << "-------------------------------------------" << endl;
+    cout << "Finances from the time interval: " << endl <<endl;
+    for (int i = 0; i < incomes.size(); i++) {
+        if ((incomes[i].getDate() >= startDate) && (incomes[i].getDate() <= endDate)) {
+            cout << "Income: " << incomes[i].getAmount() << "  Amount: "<< incomes[i].getItem() << endl;
+            sumOfIncomes = sumOfIncomes + incomes[i].getAmount();
+        }
+    }
+    cout << endl << "Sum of incomes from the time interval: " << sumOfIncomes << endl;
+    cout << "-------------------------------------------" << endl;
+    return sumOfIncomes;
 }

@@ -21,12 +21,22 @@ class ExpenseManager {
     Expense writeDataOfTheNewExpense();
     void showExpenses();
 
+    struct sortByDate {
+        inline bool operator()( Expense& struct1,  Expense& struct2) {
+            return (struct1.getDate() < struct2.getDate());
+        }
+    };
+
 public:
     ExpenseManager (int userId) :
         USER_ID(userId) {
         expenses = expensesFile.loadExpensesFromFile(USER_ID);
     };
     void addExpense();
+    void sortExpenses();
+    int calculateExpensesFromTheCurrentMonth();
+    int calculateExpensesFromThePreviousMonth();
+    int calculateExpensesFromTheTimeInterval(int startDate, int endDate);
 };
 
 #endif

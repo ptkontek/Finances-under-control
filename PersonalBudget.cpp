@@ -7,8 +7,8 @@ void PersonalBudget::userRegistration() {
 void PersonalBudget::userLogin() {
     userManager.userLogin();
     if (userManager.isTheUserLoggedIn()) {
-    incomeManager = new IncomeManager(userManager.getUserIdAfterLoggedIn());
-    expenseManager = new ExpenseManager(userManager.getUserIdAfterLoggedIn());
+        incomeManager = new IncomeManager(userManager.getUserIdAfterLoggedIn());
+        expenseManager = new ExpenseManager(userManager.getUserIdAfterLoggedIn());
     }
 }
 
@@ -31,15 +31,70 @@ void PersonalBudget::changeUserPassword() {
 void PersonalBudget::addIncome() {
     if (userManager.isTheUserLoggedIn()) {
         incomeManager->addIncome();
-    }
-    incomeManager->addIncome();
+    } else
+        cout << "To add income you have to log in" << endl;
 }
 
-void PersonalBudget::addExpense(){
+void PersonalBudget::addExpense() {
     if (userManager.isTheUserLoggedIn()) {
         expenseManager->addExpense();
-    }
-    expenseManager->addExpense();
+    }else
+        cout << "To add expense you have to log in" << endl;
+}
+
+void PersonalBudget::calculateFinancesFromTheCurrentMonth() {
+    int sumOfIncomes, sumOfExpenses, sumDiferrence;
+
+    sumOfIncomes = incomeManager->calculateIncomesFromTheCurrentMonth();
+    sumOfExpenses = expenseManager->calculateExpensesFromTheCurrentMonth();
+    sumDiferrence = sumOfIncomes - sumOfExpenses;
+
+    if (sumDiferrence > 0 )
+        cout << "Your savings from the current month: " << sumDiferrence << endl << endl;
+    else if (sumDiferrence < 0)
+        cout << "Your debt from the current month: " << -sumDiferrence << endl << endl;
+    else if (sumDiferrence == 0)
+        cout << "You have no savings or debt." << endl << endl;
+    system("pause");
+}
+
+void PersonalBudget::calculateFinancesFromThePreviousMonth() {
+    int sumOfIncomes, sumOfExpenses, sumDiferrence;
+
+    sumOfIncomes = incomeManager->calculateIncomesFromThePreviousMonth();
+    sumOfExpenses = expenseManager->calculateExpensesFromThePreviousMonth();
+    sumDiferrence = sumOfIncomes - sumOfExpenses;
+
+    if (sumDiferrence > 0 )
+        cout << "Your savings from the previous month: " << sumDiferrence << endl << endl;
+    else if (sumDiferrence < 0)
+        cout << "Your debt from the previous month: " << -sumDiferrence << endl << endl;
+    else if (sumDiferrence == 0)
+        cout << "You have no savings or debt." << endl << endl;
+    system("pause");
+}
+
+void PersonalBudget::calculateFinancesFromTheTimeInterval() {
+    int sumOfIncomes, sumOfExpenses, sumDiferrence, startDate, endDate;
+    DateManager dateManager;
+
+    cout << "What period do you want to get the finance balance? " << endl;
+    cout << endl << "START DATE" << endl;
+    startDate = dateManager.convertDateToInt(dateManager.enterDate());
+    cout << endl << "END DATE" << endl;
+    endDate = dateManager.convertDateToInt(dateManager.enterDate());
+
+    sumOfIncomes = incomeManager->calculateIncomesFromTheTimeInterval(startDate, endDate);
+    sumOfExpenses = expenseManager->calculateExpensesFromTheTimeInterval(startDate, endDate);
+    sumDiferrence = sumOfIncomes - sumOfExpenses;
+
+    if (sumDiferrence > 0 )
+        cout << "Your savings from the time interval: " << sumDiferrence << endl << endl;
+    else if (sumDiferrence < 0)
+        cout << "Your debt from the time interval: " << -sumDiferrence << endl << endl;
+    else if (sumDiferrence == 0)
+        cout << "You have no savings or debt." << endl << endl;
+    system("pause");
 }
 
 char PersonalBudget::selectOptionFromTheMainMenu() {

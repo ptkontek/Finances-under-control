@@ -61,9 +61,7 @@ void ExpensesFile::addExpenseToFile(Expense expense) {
     string dateWithoutDash, dateWithDash;
 
     dateWithoutDash = HelpingMethods::convertIntToString(expense.getDate());
-    cout << "date without dash" << dateWithoutDash << endl;
     dateWithDash = HelpingMethods::addDashToDate(dateWithoutDash);
-    cout << "date with dash" << dateWithDash << endl;
 
     bool fileExists = xml.Load( "Expenses.xml" );
 
@@ -71,7 +69,6 @@ void ExpensesFile::addExpenseToFile(Expense expense) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Expenses");
     }
-
 
     xml.FindElem();
     xml.IntoElem();

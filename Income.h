@@ -30,5 +30,6 @@ public:
     int getDate();
     string getItem();
     float getAmount();
+
 };
 #endif

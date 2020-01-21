@@ -2,14 +2,11 @@
 
 void UserManager::userRegistration() {
     User user = writeDataOfTheNewUser();
-    //UsersFile usersFile;
 
     users.push_back(user);
     usersFile.addUserToFile(user);
 
     cout << endl << "Account successfully created." << endl << endl;
-
-    showAllUsers();
     system("pause");
 }
 
@@ -86,7 +83,6 @@ int UserManager::userLogin() {
                 if (users[i].getPassword() == password) {
                     userIdAfterLoggedIn = users[i].getId();
                     cout << endl << "You logged in." << endl << endl;
-                    cout << "User id after logged in " << userIdAfterLoggedIn << endl;
 
                     system("pause");
                     return userIdAfterLoggedIn;
@@ -157,4 +153,3 @@ void UserManager::changeUserPassword() {
         }
     }
 }
-

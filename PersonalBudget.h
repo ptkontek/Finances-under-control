@@ -39,7 +39,9 @@ public:
     bool isTheUserLoggedIn();
     void addIncome();
     void addExpense();
-
+    void calculateFinancesFromTheCurrentMonth();
+    void calculateFinancesFromThePreviousMonth();
+    void calculateFinancesFromTheTimeInterval();
     char selectOptionFromTheUserMenu();
     char selectOptionFromTheMainMenu();
 };

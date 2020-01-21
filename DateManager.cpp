@@ -14,8 +14,24 @@ int DateManager::howManyDaysHasMonth() {
     } else
         daysInMonth = 31;
 
-    cout << "Days in month: " << month << " is: " << daysInMonth << endl;
     return daysInMonth;
+}
+
+int DateManager::getMonthFromTheSystem() {
+    time_t czas;
+    tm timeinfo;
+    time (&czas);
+    timeinfo = *localtime( &czas);
+    month = timeinfo.tm_mon+1;
+    return month;
+}
+int DateManager::getYearFromTheSystem() {
+    time_t czas;
+    tm timeinfo;
+    time (&czas);
+    timeinfo = *localtime( &czas);
+    year = timeinfo.tm_year+1900;
+    return year;
 }
 
 string DateManager::getDateFromTheSystem() {
@@ -41,16 +57,126 @@ string DateManager::getDateFromTheSystem() {
         dayString = HelpingMethods::convertIntToString(day);
 
     date = (yearString +"-"+ monthString +"-"+ dayString);
-    cout << date << endl;
-
     if (DateManager::checkIfTheDateIsCorrect() == true)
-        cout << "Date is correct" << endl;
-    return date;
+        return date;
+}
+
+int DateManager::dateOfBeginningOfTheCurrentMonth() {
+    time_t czas;
+    tm timeinfo;
+    time (&czas);
+    timeinfo = *localtime( &czas);
+
+    string yearString, monthString, dayString;
+    int dateOfBeginningOfTheCurrentMonth;
+    year = timeinfo.tm_year+1900;
+    month = timeinfo.tm_mon+1;
+    day = 1;
+
+    yearString = HelpingMethods::convertIntToString(year);
+    dayString = "0" + HelpingMethods::convertIntToString(day);
+    if (month < 10)
+        monthString = "0" + HelpingMethods::convertIntToString(month);
+    else
+        monthString = HelpingMethods::convertIntToString(month);
+
+    date = (yearString + monthString + dayString);
+    dateOfBeginningOfTheCurrentMonth = HelpingMethods::convertStringToInt(date);
+    return dateOfBeginningOfTheCurrentMonth;
+}
+
+int DateManager::dateEndingTheCurrentMonth() {
+    time_t czas;
+    tm timeinfo;
+    time (&czas);
+    timeinfo = *localtime( &czas);
+
+    string yearString, monthString, dayString;
+    int dateEndingTheCurrentMonth;
+    year = timeinfo.tm_year+1900;
+    month = timeinfo.tm_mon+1;
+    day = howManyDaysHasMonth();
+
+    yearString = HelpingMethods::convertIntToString(year);
+    dayString = HelpingMethods::convertIntToString(day);
+    if (month < 10)
+        monthString = "0" + HelpingMethods::convertIntToString(month);
+    else
+        monthString = HelpingMethods::convertIntToString(month);
+
+    date = (yearString + monthString + dayString);
+    dateEndingTheCurrentMonth = HelpingMethods::convertStringToInt(date);
+    return dateEndingTheCurrentMonth;
+}
+
+int DateManager::dateOfBeginningOfThePreviousMonth() {
+    time_t czas;
+    tm timeinfo;
+    time (&czas);
+    timeinfo = *localtime( &czas);
+
+    string yearString, monthString, dayString;
+    int dateOfBeginningOfThePreviousMonth;
+    year = timeinfo.tm_year+1900;
+    month = timeinfo.tm_mon+1;
+
+    if (month == 1) {
+        month = 12;
+        year = year-1;
+    } else
+        month = month-1;
+    day = 1;
+
+    if (month < 10)
+        monthString = "0" + HelpingMethods::convertIntToString(month);
+    else if ((month >= 10) && (month <= 12))
+        monthString = HelpingMethods::convertIntToString(month);
+
+    yearString = HelpingMethods::convertIntToString(year);
+    dayString = "0" + HelpingMethods::convertIntToString(day);
+
+    date = (yearString + monthString + dayString);
+    dateOfBeginningOfThePreviousMonth = HelpingMethods::convertStringToInt(date);
+    return dateOfBeginningOfThePreviousMonth;
+}
+
+int DateManager::dateEndingThePreviousMonth() {
+    time_t czas;
+    tm timeinfo;
+    time (&czas);
+    timeinfo = *localtime( &czas);
+
+    string yearString, monthString, dayString;
+    int dateEndingThePreviousMonth;
+    year = timeinfo.tm_year+1900;
+    month = timeinfo.tm_mon+1;
+
+    if (month == 1) {
+        month = 12;
+        year = year-1;
+    } else
+        month = month-1;
+
+    day = howManyDaysHasMonth();
+
+    if (month < 10) {
+        monthString = "0" + HelpingMethods::convertIntToString(month);
+        if (month == 1)
+            year = year-1;
+    } else if ((month >= 10) && (month <= 12))
+        monthString = HelpingMethods::convertIntToString(month);
+
+    yearString = HelpingMethods::convertIntToString(year);
+    dayString = HelpingMethods::convertIntToString(day);
+
+    date = (yearString + monthString + dayString);
+    dateEndingThePreviousMonth = HelpingMethods::convertStringToInt(date);
+    return dateEndingThePreviousMonth;
 }
 
 string DateManager::enterDate() {
 
-    cout << "Enter date in format yyyy-mm-dd: " << endl;
+    cout << endl << "Enter date in format yyyy-mm-dd: ";
     cin >> date;
 
     do {
@@ -58,23 +184,17 @@ string DateManager::enterDate() {
         month = HelpingMethods::convertStringToInt(date.substr(5,2));
         day = HelpingMethods::convertStringToInt(date.substr(8,2));
 
-        if (DateManager::checkIfTheDateIsCorrect() == true)
-            cout << "Date is correct" << endl;
-        else {
-            cout << "Date isn't correct. Enter date again in format yyyy-mm-dd: " << endl;
+        if (DateManager::checkIfTheDateIsCorrect() == false) {
+            cout << endl << "Date isn't correct. Enter date again in format yyyy-mm-dd: ";
             cin >> date;
         }
     } while (DateManager::checkIfTheDateIsCorrect() == false);
     return date;
 }
 
-string DateManager::getDate() {
-    return date;
-}
-
 string DateManager::selectDateEntry() {
     char sign;
-    cout << "If you want do add today's income - enter 1, if not - enter 2 to set the date:";
+    cout << "If you want do add today's income - enter 1" << endl << "if not - enter 2 to set the date: ";
 
     do {
         sign = getch();
@@ -93,7 +213,6 @@ string DateManager::selectDateEntry() {
 
 int DateManager::convertDateToInt(string dateString) {
     convertDate = HelpingMethods::convertStringToInt(dateString.substr(0,4)+ dateString.substr(5,2) + dateString.substr(8,4));
-    cout << convertDate << endl << endl;
     return convertDate;
 }
 

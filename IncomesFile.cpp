@@ -60,9 +60,7 @@ void IncomesFile::addIncomeToFile(Income income) {
     string dateWithoutDash, dateWithDash;
 
     dateWithoutDash = HelpingMethods::convertIntToString(income.getDate());
-    cout << "date without dash" << dateWithoutDash << endl;
     dateWithDash = HelpingMethods::addDashToDate(dateWithoutDash);
-    cout << "date with dash" << dateWithDash << endl;
 
     bool fileExists = xml.Load( "incomes.xml" );
 
@@ -88,27 +86,3 @@ void IncomesFile::addIncomeToFile(Income income) {
 int IncomesFile::getLastIncomeId() {
     return lastIncomeId;
 }
-
-/*bool IncomesFile:: sortDates(Income income.getDate(), Income income.getDate()) {
-
-  //  return ( income.getDate() < income.getDate() );
-//}
-
-
-void IncomesFile::sortIncomes() {
-    //Income income;
-
-    sort(incomes.begin(), incomes.end(), [ ] (const auto& lhs, const auto& rhs) {
-        return lhs.date <rhs.date;
-    });
-
-    cout << " Posortowany wektor" << endl;
-
-    for (int i = 0; i < incomes.size(); i++) {
-        cout <<incomes[i].getIncomeId() << endl;
-        cout <<incomes[i].getUserId() << endl;
-        cout <<incomes[i].getDate() << endl;
-        cout <<incomes[i].getItem() << endl;
-        cout <<incomes[i].getAmount() << endl;
-    }
-}*/

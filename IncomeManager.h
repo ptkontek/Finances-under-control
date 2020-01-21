@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Income.h"
 #include "IncomesFile.h"
 #include "Markup.h"
@@ -21,12 +22,23 @@ class IncomeManager {
     Income writeDataOfTheNewIncome();
     void showIncomes();
 
+    struct sortByDate {
+        inline bool operator()( Income& struct1,  Income& struct2) {
+            return (struct1.getDate() < struct2.getDate());
+        }
+    };
+
+
 public:
     IncomeManager (int userId) :
         USER_ID(userId) {
         incomes = incomesFile.loadIncomesFromFile(USER_ID);
     };
     void addIncome();
+    void sortIncomes();
+    int calculateIncomesFromThePreviousMonth();
+    int calculateIncomesFromTheCurrentMonth();
+    int calculateIncomesFromTheTimeInterval(int startDate, int endDate);
 };
 
 #endif
