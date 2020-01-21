@@ -2,14 +2,11 @@
 
 void UserManager::userRegistration() {
     User user = writeDataOfTheNewUser();
-    //UsersFile usersFile;
 
     users.push_back(user);
     usersFile.addUserToFile(user);
 
     cout << endl << "Account successfully created." << endl << endl;
-
-    showAllUsers();
     system("pause");
 }
 
@@ -156,4 +153,3 @@ void UserManager::changeUserPassword() {
         }
     }
 }
-

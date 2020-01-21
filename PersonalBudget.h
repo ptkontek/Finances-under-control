@@ -39,7 +39,6 @@ public:
     bool isTheUserLoggedIn();
     void addIncome();
     void addExpense();
-    void sortIncomes();
     void calculateFinancesFromTheCurrentMonth();
     void calculateFinancesFromThePreviousMonth();
     void calculateFinancesFromTheTimeInterval();

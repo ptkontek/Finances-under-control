@@ -31,19 +31,15 @@ void PersonalBudget::changeUserPassword() {
 void PersonalBudget::addIncome() {
     if (userManager.isTheUserLoggedIn()) {
         incomeManager->addIncome();
-    }
-    incomeManager->addIncome();
+    } else
+        cout << "To add income you have to log in" << endl;
 }
 
 void PersonalBudget::addExpense() {
     if (userManager.isTheUserLoggedIn()) {
         expenseManager->addExpense();
-    }
-    expenseManager->addExpense();
-}
-
-void PersonalBudget::sortIncomes() {
-    incomeManager->sortIncomes();
+    }else
+        cout << "To add expense you have to log in" << endl;
 }
 
 void PersonalBudget::calculateFinancesFromTheCurrentMonth() {

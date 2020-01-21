@@ -176,7 +176,7 @@ int DateManager::dateEndingThePreviousMonth() {
 
 string DateManager::enterDate() {
 
-    cout << "Enter date in format yyyy-mm-dd: " << endl;
+    cout << endl << "Enter date in format yyyy-mm-dd: ";
     cin >> date;
 
     do {
@@ -185,19 +185,16 @@ string DateManager::enterDate() {
         day = HelpingMethods::convertStringToInt(date.substr(8,2));
 
         if (DateManager::checkIfTheDateIsCorrect() == false) {
-            cout << "Date isn't correct. Enter date again in format yyyy-mm-dd: " << endl;
+            cout << endl << "Date isn't correct. Enter date again in format yyyy-mm-dd: ";
             cin >> date;
         }
     } while (DateManager::checkIfTheDateIsCorrect() == false);
     return date;
 }
 
-
-
-
 string DateManager::selectDateEntry() {
     char sign;
-    cout << "If you want do add today's income - enter 1, if not - enter 2 to set the date:";
+    cout << "If you want do add today's income - enter 1" << endl << "if not - enter 2 to set the date: ";
 
     do {
         sign = getch();

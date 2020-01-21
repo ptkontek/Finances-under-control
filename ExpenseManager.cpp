@@ -10,8 +10,6 @@ void ExpenseManager::addExpense() {
     expenses.push_back(expense);
     expensesFile.addExpenseToFile(expense);
     cout << endl << "New expense added." << endl;
-
-    showExpenses();
     system("pause");
 }
 
@@ -30,7 +28,8 @@ Expense ExpenseManager::writeDataOfTheNewExpense() {
     convertDate = dateManager.convertDateToInt(date);
     expense.setDate(convertDate);
 
-    cout << "Enter item: ";
+    cout << endl << "-------------------------------" << endl;
+    cout <<  "Enter item: ";
     cin >> item;
     expense.setItem(item);
 

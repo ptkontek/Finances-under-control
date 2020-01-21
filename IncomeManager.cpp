@@ -10,8 +10,6 @@ void IncomeManager::addIncome() {
     incomes.push_back(income);
     incomesFile.addIncomeToFile(income);
     cout << endl << "New income added." << endl;
-
-    showIncomes();
     system("pause");
 }
 
@@ -30,6 +28,7 @@ Income IncomeManager::writeDataOfTheNewIncome() {
     convertDate = dateManager.convertDateToInt(date);
     income.setDate(convertDate);
 
+    cout << endl << "-------------------------------" << endl;
     cout << "Enter item: ";
     //item = HelpingMethods::loadTheLine();
     cin >> item;
