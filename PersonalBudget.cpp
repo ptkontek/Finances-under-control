@@ -54,11 +54,11 @@ void PersonalBudget::calculateFinancesFromTheCurrentMonth() {
     sumDiferrence = sumOfIncomes - sumOfExpenses;
 
     if (sumDiferrence > 0 )
-        cout << "Your savings from the current month: " << sumDiferrence << endl;
+        cout << "Your savings from the current month: " << sumDiferrence << endl << endl;
     else if (sumDiferrence < 0)
-        cout << "Your debt from the current month: " << -sumDiferrence << endl;
+        cout << "Your debt from the current month: " << -sumDiferrence << endl << endl;
     else if (sumDiferrence == 0)
-        cout << "You have no savings or debt." << endl;
+        cout << "You have no savings or debt." << endl << endl;
     system("pause");
 }
 
@@ -70,11 +70,34 @@ void PersonalBudget::calculateFinancesFromThePreviousMonth() {
     sumDiferrence = sumOfIncomes - sumOfExpenses;
 
     if (sumDiferrence > 0 )
-        cout << "Your savings from the previous month: " << sumDiferrence << endl;
+        cout << "Your savings from the previous month: " << sumDiferrence << endl << endl;
     else if (sumDiferrence < 0)
-        cout << "Your debt from the previous month: " << -sumDiferrence << endl;
+        cout << "Your debt from the previous month: " << -sumDiferrence << endl << endl;
     else if (sumDiferrence == 0)
-        cout << "You have no savings or debt." << endl;
+        cout << "You have no savings or debt." << endl << endl;
+    system("pause");
+}
+
+void PersonalBudget::calculateFinancesFromTheTimeInterval() {
+    int sumOfIncomes, sumOfExpenses, sumDiferrence, startDate, endDate;
+    DateManager dateManager;
+
+    cout << "What period do you want to get the finance balance? " << endl;
+    cout << endl << "START DATE" << endl;
+    startDate = dateManager.convertDateToInt(dateManager.enterDate());
+    cout << endl << "END DATE" << endl;
+    endDate = dateManager.convertDateToInt(dateManager.enterDate());
+
+    sumOfIncomes = incomeManager->calculateIncomesFromTheTimeInterval(startDate, endDate);
+    sumOfExpenses = expenseManager->calculateExpensesFromTheTimeInterval(startDate, endDate);
+    sumDiferrence = sumOfIncomes - sumOfExpenses;
+
+    if (sumDiferrence > 0 )
+        cout << "Your savings from the time interval: " << sumDiferrence << endl << endl;
+    else if (sumDiferrence < 0)
+        cout << "Your debt from the time interval: " << -sumDiferrence << endl << endl;
+    else if (sumDiferrence == 0)
+        cout << "You have no savings or debt." << endl << endl;
     system("pause");
 }
 

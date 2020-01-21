@@ -12,29 +12,8 @@ int main() {
 
     CMarkup xml;
     PersonalBudget personalBudget;
-    //UserManager userManager;
-    //User user;
-    //DateManager dateManager;
-
-    //date = dateManager.enterDate();
-    // convertDate = dateManager.convertDateToInt();
-
-    //IncomesFile incomesFile;
-    //incomesFile.loadIncomesFromFile();
-
-    //incomesFile.addIncomeToFile();
-    //incomesFile.showIncomes();
-    //dateManager.howManyDaysHasMonth();
-
-    //UsersFile usersFile;
-    // usersFile.loadUsersFromFile();
-    // usersFile.addUserToFile(user);
-
-    // userManager.showAllUsers();
 
     char choice;
-
-
     while (true) {
         if (personalBudget.isTheUserLoggedIn() == false) {
             choice = personalBudget.selectOptionFromTheMainMenu();
@@ -65,13 +44,13 @@ int main() {
                 personalBudget.addExpense();
                 break;
             case '3':
-                personalBudget.calculateFinancesFromTheCurrentMonth() ;
+                personalBudget.calculateFinancesFromTheCurrentMonth();
                 break;
             case '4':
-                personalBudget.calculateFinancesFromThePreviousMonth() ;
+                personalBudget.calculateFinancesFromThePreviousMonth();
                 break;
             case '5':
-               // ;
+                personalBudget.calculateFinancesFromTheTimeInterval();
                 break;
             case '6':
                 personalBudget.changeUserPassword();

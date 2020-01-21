@@ -60,9 +60,7 @@ void IncomesFile::addIncomeToFile(Income income) {
     string dateWithoutDash, dateWithDash;
 
     dateWithoutDash = HelpingMethods::convertIntToString(income.getDate());
-    cout << "date without dash" << dateWithoutDash << endl;
     dateWithDash = HelpingMethods::addDashToDate(dateWithoutDash);
-    cout << "date with dash" << dateWithDash << endl;
 
     bool fileExists = xml.Load( "incomes.xml" );
 

@@ -86,7 +86,6 @@ int UserManager::userLogin() {
                 if (users[i].getPassword() == password) {
                     userIdAfterLoggedIn = users[i].getId();
                     cout << endl << "You logged in." << endl << endl;
-                    cout << "User id after logged in " << userIdAfterLoggedIn << endl;
 
                     system("pause");
                     return userIdAfterLoggedIn;

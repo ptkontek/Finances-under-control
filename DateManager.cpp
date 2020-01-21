@@ -82,7 +82,6 @@ int DateManager::dateOfBeginningOfTheCurrentMonth() {
 
     date = (yearString + monthString + dayString);
     dateOfBeginningOfTheCurrentMonth = HelpingMethods::convertStringToInt(date);
-    cout << dateOfBeginningOfTheCurrentMonth << endl;
     return dateOfBeginningOfTheCurrentMonth;
 }
 
@@ -107,7 +106,6 @@ int DateManager::dateEndingTheCurrentMonth() {
 
     date = (yearString + monthString + dayString);
     dateEndingTheCurrentMonth = HelpingMethods::convertStringToInt(date);
-    cout << dateEndingTheCurrentMonth << endl;
     return dateEndingTheCurrentMonth;
 }
 
@@ -139,7 +137,6 @@ int DateManager::dateOfBeginningOfThePreviousMonth() {
 
     date = (yearString + monthString + dayString);
     dateOfBeginningOfThePreviousMonth = HelpingMethods::convertStringToInt(date);
-    cout << dateOfBeginningOfThePreviousMonth << endl;
     return dateOfBeginningOfThePreviousMonth;
 }
 
@@ -154,7 +151,7 @@ int DateManager::dateEndingThePreviousMonth() {
     year = timeinfo.tm_year+1900;
     month = timeinfo.tm_mon+1;
 
-      if (month == 1) {
+    if (month == 1) {
         month = 12;
         year = year-1;
     } else
@@ -174,7 +171,6 @@ int DateManager::dateEndingThePreviousMonth() {
 
     date = (yearString + monthString + dayString);
     dateEndingThePreviousMonth = HelpingMethods::convertStringToInt(date);
-    cout << dateEndingThePreviousMonth << endl;
     return dateEndingThePreviousMonth;
 }
 
@@ -188,9 +184,7 @@ string DateManager::enterDate() {
         month = HelpingMethods::convertStringToInt(date.substr(5,2));
         day = HelpingMethods::convertStringToInt(date.substr(8,2));
 
-        if (DateManager::checkIfTheDateIsCorrect() == true)
-            cout << "Date is correct" << endl;
-        else {
+        if (DateManager::checkIfTheDateIsCorrect() == false) {
             cout << "Date isn't correct. Enter date again in format yyyy-mm-dd: " << endl;
             cin >> date;
         }
@@ -198,9 +192,8 @@ string DateManager::enterDate() {
     return date;
 }
 
-string DateManager::getDate() {
-    return date;
-}
+
+
 
 string DateManager::selectDateEntry() {
     char sign;
@@ -223,7 +216,6 @@ string DateManager::selectDateEntry() {
 
 int DateManager::convertDateToInt(string dateString) {
     convertDate = HelpingMethods::convertStringToInt(dateString.substr(0,4)+ dateString.substr(5,2) + dateString.substr(8,4));
-    cout << convertDate << endl << endl;
     return convertDate;
 }
 

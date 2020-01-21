@@ -42,7 +42,7 @@ public:
     void sortIncomes();
     void calculateFinancesFromTheCurrentMonth();
     void calculateFinancesFromThePreviousMonth();
-
+    void calculateFinancesFromTheTimeInterval();
     char selectOptionFromTheUserMenu();
     char selectOptionFromTheMainMenu();
 };
