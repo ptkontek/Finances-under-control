@@ -190,7 +190,6 @@ string DateManager::enterDate() {
         }
     } while (DateManager::checkIfTheDateIsCorrect() != true);
 
-    if (DateManager::checkIfTheDateIsCorrect() == true)
         return date;
 }
 

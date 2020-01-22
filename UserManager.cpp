@@ -117,7 +117,7 @@ int UserManager::getUserIdAfterLoggedIn() {
 }
 
 void UserManager::changeUserPassword() {
-    CMarkup xml;
+
     User user;
     string newPassword = "";
     cout << "Enter new password: ";
@@ -130,29 +130,7 @@ void UserManager::changeUserPassword() {
             cout << "Password changed." << endl << endl;
             system("pause");
 
-            bool fileExists = xml.Load( "users.xml" );
-
-            if (!fileExists) {
-                xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-            }
-            xml.ResetMainPos();;
-            xml.FindElem();
-            xml.IntoElem();
-
-            while ( xml.FindElem("User") ) {
-
-                xml.IntoElem();
-                xml.FindElem("Id");
-                if ( atoi( MCD_2PCSZ(xml.GetData())) == userIdAfterLoggedIn ) {
-                    xml.FindElem("Password");
-                    xml.RemoveElem();
-                    xml.AddElem("Password",newPassword);
-
-                }
-                xml.OutOfElem();
-                    xml.Save("users.xml");
-            }
-
+            usersFile.changePasswordInFile(userIdAfterLoggedIn, newPassword);
         }
     }
 }

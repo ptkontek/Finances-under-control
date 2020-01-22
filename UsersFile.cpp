@@ -59,3 +59,29 @@ void UsersFile::addUserToFile(User user) {
 
     xml.Save("users.xml");
 }
+
+void UsersFile::changePasswordInFile(int userIdAfterLoggedIn, string newPassword) {
+    CMarkup xml;
+    bool fileExists = xml.Load( "users.xml" );
+
+    if (!fileExists) {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+    }
+    xml.ResetMainPos();;
+    xml.FindElem();
+    xml.IntoElem();
+
+    while ( xml.FindElem("User") ) {
+
+        xml.IntoElem();
+        xml.FindElem("Id");
+        if ( atoi( MCD_2PCSZ(xml.GetData())) == userIdAfterLoggedIn ) {
+            xml.FindElem("Password");
+            xml.RemoveElem();
+            xml.AddElem("Password",newPassword);
+
+        }
+        xml.OutOfElem();
+        xml.Save("users.xml");
+    }
+}
