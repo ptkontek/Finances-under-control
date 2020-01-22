@@ -20,7 +20,7 @@ class PersonalBudget {
 
 
 public:
-    PersonalBudget() { //stworzyc stale nazwy plikow
+    PersonalBudget() {
         incomeManager = NULL;
         expenseManager = NULL;
     };

@@ -43,7 +43,7 @@ void PersonalBudget::addExpense() {
 }
 
 void PersonalBudget::calculateFinancesFromTheCurrentMonth() {
-    int sumOfIncomes, sumOfExpenses, sumDiferrence;
+    float sumOfIncomes, sumOfExpenses, sumDiferrence;
 
     sumOfIncomes = incomeManager->calculateIncomesFromTheCurrentMonth();
     sumOfExpenses = expenseManager->calculateExpensesFromTheCurrentMonth();
@@ -59,7 +59,7 @@ void PersonalBudget::calculateFinancesFromTheCurrentMonth() {
 }
 
 void PersonalBudget::calculateFinancesFromThePreviousMonth() {
-    int sumOfIncomes, sumOfExpenses, sumDiferrence;
+    float sumOfIncomes, sumOfExpenses, sumDiferrence;
 
     sumOfIncomes = incomeManager->calculateIncomesFromThePreviousMonth();
     sumOfExpenses = expenseManager->calculateExpensesFromThePreviousMonth();
@@ -75,7 +75,7 @@ void PersonalBudget::calculateFinancesFromThePreviousMonth() {
 }
 
 void PersonalBudget::calculateFinancesFromTheTimeInterval() {
-    int sumOfIncomes, sumOfExpenses, sumDiferrence, startDate, endDate;
+    float sumOfIncomes, sumOfExpenses, sumDiferrence, startDate, endDate;
     DateManager dateManager;
 
     cout << "What period do you want to get the finance balance? " << endl;

@@ -15,8 +15,8 @@ void ExpenseManager::addExpense() {
 
 Expense ExpenseManager::writeDataOfTheNewExpense() {
     Expense expense;
-    string item, date;
-    float amount;
+    string item, date, amount;
+    float amountWithDot;
     int convertDate;
     DateManager dateManager;
     expense.setExpenseId(expensesFile.getLastExpenseId()+1);
@@ -30,12 +30,14 @@ Expense ExpenseManager::writeDataOfTheNewExpense() {
 
     cout << endl << "-------------------------------" << endl;
     cout <<  "Enter item: ";
-    cin >> item;
+    //cin >> item;
+    item = HelpingMethods::loadTheLine();
     expense.setItem(item);
 
     cout << "Enter amount: ";
     cin >> amount;
-    expense.setAmount(amount);
+    amountWithDot = HelpingMethods::convertStringToFloat(HelpingMethods::commaToDot(amount));
+    expense.setAmount(amountWithDot);
 
     return expense;
 }
@@ -55,9 +57,9 @@ void ExpenseManager::sortExpenses() {
     sort(expenses.begin(), expenses.end(), sortByDate());
 }
 
-int ExpenseManager::calculateExpensesFromTheCurrentMonth() {
+float ExpenseManager::calculateExpensesFromTheCurrentMonth() {
     DateManager dateManager;
-    int sumOfExpenses = 0;
+    float sumOfExpenses = 0;
     int dateOfBeginningOfTheCurrentMonth = dateManager.dateOfBeginningOfTheCurrentMonth();
     int dateEndingTheCurrentMonth = dateManager.dateEndingTheCurrentMonth();
     sortExpenses();
@@ -73,9 +75,9 @@ int ExpenseManager::calculateExpensesFromTheCurrentMonth() {
     return sumOfExpenses;
 }
 
-int ExpenseManager::calculateExpensesFromThePreviousMonth() {
+float ExpenseManager::calculateExpensesFromThePreviousMonth() {
     DateManager dateManager;
-    int sumOfExpenses = 0;
+    float sumOfExpenses = 0;
     int dateOfBeginningOfThePreviousMonth = dateManager.dateOfBeginningOfThePreviousMonth();
     int dateEndingThePreviousMonth = dateManager.dateEndingThePreviousMonth();
     sortExpenses();
@@ -91,9 +93,9 @@ int ExpenseManager::calculateExpensesFromThePreviousMonth() {
     return sumOfExpenses;
 }
 
-int ExpenseManager::calculateExpensesFromTheTimeInterval(int startDate, int endDate) {
+float ExpenseManager::calculateExpensesFromTheTimeInterval(int startDate, int endDate) {
     DateManager dateManager;
-    int sumOfExpenses = 0;
+    float sumOfExpenses = 0;
 
     sortExpenses();
     for (int i = 0; i < expenses.size(); i++) {
