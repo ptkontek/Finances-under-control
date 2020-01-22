@@ -39,7 +39,7 @@ vector <Expense> ExpensesFile::loadExpensesFromFile(int userIdAfterLoggedIn) {
             expense.setItem(xml.GetData());
 
             xml.FindElem( "Amount" );
-            expense.setAmount( atoi( MCD_2PCSZ(xml.GetData())));
+            expense.setAmount( atof( MCD_2PCSZ(xml.GetData())));
 
             expenses.push_back(expense);
 
@@ -58,10 +58,11 @@ vector <Expense> ExpensesFile::loadExpensesFromFile(int userIdAfterLoggedIn) {
 void ExpensesFile::addExpenseToFile(Expense expense) {
     CMarkup xml;
 
-    string dateWithoutDash, dateWithDash;
+    string dateWithoutDash, dateWithDash, amountString;
 
     dateWithoutDash = HelpingMethods::convertIntToString(expense.getDate());
     dateWithDash = HelpingMethods::addDashToDate(dateWithoutDash);
+    amountString = HelpingMethods::convertFloatToString(expense.getAmount());
 
     bool fileExists = xml.Load( "Expenses.xml" );
 
@@ -78,7 +79,7 @@ void ExpensesFile::addExpenseToFile(Expense expense) {
     xml.AddElem("UserId", expense.getUserId());
     xml.AddElem("Date", dateWithDash);
     xml.AddElem("Item", expense.getItem());
-    xml.AddElem("Amount", expense.getAmount());
+    xml.AddElem("Amount", amountString);
 
     xml.Save("Expenses.xml");
     lastExpenseId++;

@@ -15,8 +15,8 @@ void IncomeManager::addIncome() {
 
 Income IncomeManager::writeDataOfTheNewIncome() {
     Income income;
-    string item, date;
-    float amount;
+    string item, date, amount;
+    float amountWithDot;
     int convertDate;
     DateManager dateManager;
     income.setIncomeId(incomesFile.getLastIncomeId()+1);
@@ -30,13 +30,16 @@ Income IncomeManager::writeDataOfTheNewIncome() {
 
     cout << endl << "-------------------------------" << endl;
     cout << "Enter item: ";
-    //item = HelpingMethods::loadTheLine();
-    cin >> item;
+    //cin >> item;
+    item = HelpingMethods::loadTheLine();
     income.setItem(item);
+
 
     cout << "Enter amount: ";
     cin >> amount;
-    income.setAmount(amount);
+
+    amountWithDot = HelpingMethods::convertStringToFloat(HelpingMethods::commaToDot(amount));
+    income.setAmount(amountWithDot);
 
     return income;
 }
@@ -57,9 +60,9 @@ void IncomeManager::sortIncomes() {
     sort(incomes.begin(), incomes.end(), sortByDate());
 }
 
-int IncomeManager::calculateIncomesFromThePreviousMonth() {
+float IncomeManager::calculateIncomesFromThePreviousMonth() {
     DateManager dateManager;
-    int sumOfIncomes = 0;
+    float sumOfIncomes = 0;
     int dateOfBeginningOfThePreviousMonth = dateManager.dateOfBeginningOfThePreviousMonth();
     int dateEndingThePreviousMonth = dateManager.dateEndingThePreviousMonth();
     sortIncomes();
@@ -76,9 +79,9 @@ int IncomeManager::calculateIncomesFromThePreviousMonth() {
     return sumOfIncomes;
 }
 
-int IncomeManager::calculateIncomesFromTheCurrentMonth() {
+float IncomeManager::calculateIncomesFromTheCurrentMonth() {
     DateManager dateManager;
-    int sumOfIncomes = 0;
+    float sumOfIncomes = 0;
     int dateOfBeginningOfTheCurrentMonth = dateManager.dateOfBeginningOfTheCurrentMonth();
     int dateEndingTheCurrentMonth = dateManager.dateEndingTheCurrentMonth();
 
@@ -96,9 +99,9 @@ int IncomeManager::calculateIncomesFromTheCurrentMonth() {
     return sumOfIncomes;
 }
 
-int IncomeManager::calculateIncomesFromTheTimeInterval(int startDate, int endDate) {
+float IncomeManager::calculateIncomesFromTheTimeInterval(int startDate, int endDate) {
     DateManager dateManager;
-    int sumOfIncomes = 0;
+    float sumOfIncomes = 0;
 
     sortIncomes();
     cout << endl << "-------------------------------------------" << endl;

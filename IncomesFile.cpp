@@ -39,7 +39,7 @@ vector <Income> IncomesFile::loadIncomesFromFile(int userIdAfterLoggedIn) {
             income.setItem(xml.GetData());
 
             xml.FindElem( "Amount" );
-            income.setAmount( atoi( MCD_2PCSZ(xml.GetData())));
+            income.setAmount( atof( MCD_2PCSZ(xml.GetData())));
 
             incomes.push_back(income);
 
@@ -57,10 +57,11 @@ vector <Income> IncomesFile::loadIncomesFromFile(int userIdAfterLoggedIn) {
 
 void IncomesFile::addIncomeToFile(Income income) {
     CMarkup xml;
-    string dateWithoutDash, dateWithDash;
+    string dateWithoutDash, dateWithDash, amountString;
 
     dateWithoutDash = HelpingMethods::convertIntToString(income.getDate());
     dateWithDash = HelpingMethods::addDashToDate(dateWithoutDash);
+    amountString = HelpingMethods::convertFloatToString(income.getAmount());
 
     bool fileExists = xml.Load( "incomes.xml" );
 
@@ -77,7 +78,7 @@ void IncomesFile::addIncomeToFile(Income income) {
     xml.AddElem("UserId", income.getUserId());
     xml.AddElem("Date", dateWithDash);
     xml.AddElem("Item", income.getItem());
-    xml.AddElem("Amount", income.getAmount());
+    xml.AddElem("Amount", amountString);
 
     xml.Save("Incomes.xml");
     lastIncomeId++;

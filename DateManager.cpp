@@ -184,12 +184,14 @@ string DateManager::enterDate() {
         month = HelpingMethods::convertStringToInt(date.substr(5,2));
         day = HelpingMethods::convertStringToInt(date.substr(8,2));
 
-        if (DateManager::checkIfTheDateIsCorrect() == false) {
+        if (DateManager::checkIfTheDateIsCorrect() != true) {
             cout << endl << "Date isn't correct. Enter date again in format yyyy-mm-dd: ";
             cin >> date;
         }
-    } while (DateManager::checkIfTheDateIsCorrect() == false);
-    return date;
+    } while (DateManager::checkIfTheDateIsCorrect() != true);
+
+    if (DateManager::checkIfTheDateIsCorrect() == true)
+        return date;
 }
 
 string DateManager::selectDateEntry() {

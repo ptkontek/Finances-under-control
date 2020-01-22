@@ -34,9 +34,9 @@ public:
     };
     void addExpense();
     void sortExpenses();
-    int calculateExpensesFromTheCurrentMonth();
-    int calculateExpensesFromThePreviousMonth();
-    int calculateExpensesFromTheTimeInterval(int startDate, int endDate);
+    float calculateExpensesFromTheCurrentMonth();
+    float calculateExpensesFromThePreviousMonth();
+    float calculateExpensesFromTheTimeInterval(int startDate, int endDate);
 };
 
 #endif

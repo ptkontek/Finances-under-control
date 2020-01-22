@@ -1,17 +1,32 @@
 #include "HelpingMethods.h"
 
-string HelpingMethods::convertIntToString(int liczba) {
+string HelpingMethods::convertIntToString(int number) {
     ostringstream ss;
-    ss << liczba;
+    ss << number;
     string str = ss.str();
     return str;
 }
 
-int HelpingMethods::convertStringToInt(string liczba) {
-    int liczbaInt;
-    istringstream iss(liczba);
-    iss >> liczbaInt;
-    return liczbaInt;
+string HelpingMethods::convertFloatToString(float number) {
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+int HelpingMethods::convertStringToInt(string number) {
+    int numberInt;
+    istringstream iss(number);
+    iss >> numberInt;
+    return numberInt;
+}
+
+float HelpingMethods::convertStringToFloat(string number) {
+    float numberFloat;
+    stringstream ss;
+    ss << number;
+    ss >> numberFloat;
+    return numberFloat;
 }
 
 string HelpingMethods::addDashToDate(string date) {
@@ -42,12 +57,15 @@ char HelpingMethods::loadSign() {
     return sign;
 }
 
-string HelpingMethods::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst) {
-    if (!tekst.empty()) {
-        transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);
-        tekst[0] = toupper(tekst[0]);
+string HelpingMethods::commaToDot(string number) {
+    for (int i=0; i<number.size(); i++) {
+        if (number[i] == ',') {
+            number[i] = '.';
+            break;
+        } else
+            number[i] == number[i];
     }
-    return tekst;
+    return number;
 }
 
 string HelpingMethods::loadTheLine() {
@@ -56,27 +74,10 @@ string HelpingMethods::loadTheLine() {
     return start;
 }
 
-string HelpingMethods::pobierzLiczbe(string tekst, int pozycjaZnaku) {
-    string liczba = "";
-    while(isdigit(tekst[pozycjaZnaku]) == true) {
-        liczba += tekst[pozycjaZnaku];
-        pozycjaZnaku ++;
+string HelpingMethods::uppercaseLetter(string text) {
+    if (!text.empty()) {
+        transform(text.begin(), text.end(), text.begin(), ::tolower);
+        text[0] = toupper(text[0]);
     }
-    return liczba;
+    return text;
 }
-
-int HelpingMethods::wczytajLiczbeCalkowita() {
-    string wejscie = "";
-    int liczba = 0;
-
-    while (true) {
-        getline(cin, wejscie);
-
-        stringstream myStream(wejscie);
-        if (myStream >> liczba)
-            break;
-        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
-    }
-    return liczba;
-}
-

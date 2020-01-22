@@ -27,9 +27,12 @@ User UserManager::writeDataOfTheNewUser() {
 
     cout << "Enter name: " ;
     name = HelpingMethods::loadTheLine();
+    name = HelpingMethods::uppercaseLetter(name);
     user.setName(name);
+
     cout << "Enter surname: ";
     surname = HelpingMethods::loadTheLine();
+    surname = HelpingMethods::uppercaseLetter(surname);
     user.setSurname(surname);
 
     do {
@@ -124,7 +127,7 @@ void UserManager::changeUserPassword() {
     for (int i = 0; i < users.size(); i++) {
         if (users[i].getId() == userIdAfterLoggedIn) {
             users[i].setPassword(newPassword);
-            cout << "Haslo zostalo zmienione." << endl << endl;
+            cout << "Password changed." << endl << endl;
             system("pause");
 
             bool fileExists = xml.Load( "users.xml" );
