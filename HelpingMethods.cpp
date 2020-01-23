@@ -69,6 +69,8 @@ string HelpingMethods::commaToDot(string number) {
 }
 
 string HelpingMethods::loadTheLine() {
+    cin.clear();
+    cin.sync();
     string start = "";
     getline(cin, start);
     return start;

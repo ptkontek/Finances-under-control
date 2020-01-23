@@ -30,7 +30,6 @@ Expense ExpenseManager::writeDataOfTheNewExpense() {
 
     cout << endl << "-------------------------------" << endl;
     cout <<  "Enter item: ";
-    //cin >> item;
     item = HelpingMethods::loadTheLine();
     expense.setItem(item);
 

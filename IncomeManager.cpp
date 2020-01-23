@@ -30,7 +30,6 @@ Income IncomeManager::writeDataOfTheNewIncome() {
 
     cout << endl << "-------------------------------" << endl;
     cout << "Enter item: ";
-    //cin >> item;
     item = HelpingMethods::loadTheLine();
     income.setItem(item);
 
