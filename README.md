@@ -1,6 +1,6 @@
 # Finances under control
 
-*Application for keeping a personal budget. Controlling your expenses and income.*
+*Application for keeping a personal budget. Controlling your expenses and incomes.*
 
 ## Topic
 
